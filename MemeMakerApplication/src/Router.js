@@ -10,13 +10,21 @@ import Detail from './Pages/Detail';
 const Router = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator
-                screenOptions={{
-                    //headerShown: false
-                }}
-            >
-                <Stack.Screen name='Home' component={Home} />
-                <Stack.Screen name='Detail' component={Detail} />
+            <Stack.Navigator>
+                <Stack.Screen
+                    name='Home'
+                    component={Home}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name='Detail'
+                    component={Detail}
+                    options={{
+                        headerShown: false
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )

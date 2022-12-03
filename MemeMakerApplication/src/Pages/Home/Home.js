@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import { FlashList } from "@shopify/flash-list";
+import LinearGradient from 'react-native-linear-gradient';
+
 import usefatch from '../../Hook';
 import MemesCard from '../../Components/MemesCard';
+import Header from '../../Components/Header';
 
 const url = 'https://api.imgflip.com/get_memes';
 
@@ -27,12 +30,37 @@ const Home = ({ navigation }) => {
     }
 
     return (
-        <FlatList
-            data={veri.data.memes}
-            renderItem={RenderVeri}
-        />
-
+        <>
+            <Header home={true} />
+            <LinearGradient
+                colors=
+                {[
+                    '#FFA351FF',
+                    '#FFBE7BFF',
+                    '#EED971FF',
+                ]}
+                style={styles.container}
+            >
+                <StatusBar barStyle={'light-content'} backgroundColor={'#FFA351FF'} />
+                <FlashList
+                    data={veri.data.memes}
+                    renderItem={RenderVeri}
+                    numColumns={2}
+                    estimatedItemSize={200}
+                    contentContainerStyle={{
+                        paddingHorizontal: 5,
+                        paddingTop: 70
+                    }}
+                />
+            </LinearGradient>
+        </>
     )
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
