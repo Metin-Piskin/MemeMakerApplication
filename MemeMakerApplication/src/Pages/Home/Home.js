@@ -31,7 +31,6 @@ const Home = ({ navigation }) => {
 
     return (
         <>
-            <Header home={true} />
             <LinearGradient
                 colors=
                 {[
@@ -41,6 +40,7 @@ const Home = ({ navigation }) => {
                 ]}
                 style={styles.container}
             >
+                <Header home={true} />
                 <StatusBar barStyle={'light-content'} backgroundColor={'#FFA351FF'} />
                 <FlashList
                     data={veri.data.memes}
@@ -49,7 +49,7 @@ const Home = ({ navigation }) => {
                     estimatedItemSize={200}
                     contentContainerStyle={{
                         paddingHorizontal: 5,
-                        paddingTop: 70
+                        //paddingTop: 70
                     }}
                 />
             </LinearGradient>

@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, Button, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import Draggable from '../../Components/Draggable';
 import Header from '../../Components/Header';
 
 const Detail = (props) => {
     const { item } = props.route.params;
-    const [shouldReverse, setShouldReverse] = useState(false);
     const [list, setList] = useState([]);
     const [text, setText] = useState([]);
-    const [drag01, setDrag01] = useState({ x: 20, y: 160 });
+    const [shouldReverse, setShouldReverse] = useState(false);
+    const [drag01, setDrag01] = useState({ x: 270, y: 170 });
     const [btn, setBtn] = useState(false);
-    const [color, setColor] = useState('black');
-    const [size, setSize] = useState(14);
+
+    const [colerOpen, setColerOpen] = useState(false);
+    const [colervalue, setColerValue] = useState('black');
+    const [colorData, setColorData] = useState(Colorlist);
+
+    const [sizeOpen, setSizerOpen] = useState(false);
+    const [sizevalue, setSizeValue] = useState(14);
+    const [sizeData, setSizeData] = useState(Sizelist);
+
+    const [fontOpen, setFontOpen] = useState(false);
+    const [fontvalue, setFontValue] = useState('SpecialElite-Regular');
+    const [fontData, setFontData] = useState(Fontlist);
+
 
     const addToList = () => {
         if (!text) {
@@ -40,15 +52,16 @@ const Detail = (props) => {
             maxHeight: 341,
             resizeMode: 'contain',
             alignSelf: 'center',
-            marginTop: 110,
+            marginTop: 15,
         },
         list: {
-            color: color,
+            color: colervalue,
             padding: 5,
             maxWidth: 160,
             lineHeight: 23,
             flexWrap: 'wrap',
-            fontSize: size
+            fontSize: sizevalue,
+            fontFamily: fontvalue
         },
         imput: {
             backgroundColor: '#e0e0e0',
@@ -61,38 +74,10 @@ const Detail = (props) => {
             backgroundColor: '#FFA351FF',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingHorizontal: 13,
+            paddingHorizontal: 8,
             borderRadius: 80,
             borderWidth: 5,
-            borderColor: '#FFBE7BFF'
-        },
-        btncolorNormal: {
-            marginHorizontal: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        btncolorPress: {
-            borderWidth: 3,
-            borderColor: '#EED971FF',
-            width: 36,
-            height: 36,
-            borderRadius: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        btnsizeNormal: {
-            marginHorizontal: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        btnsizePress: {
-            borderWidth: 3,
-            borderColor: '#EED971FF',
-            width: 30,
-            height: 30,
-            borderRadius: 8,
-            alignItems: 'center',
-            justifyContent: 'center',
+            borderColor: '#fff'
         },
         editcontainer: {
             flexDirection: 'row',
@@ -100,22 +85,8 @@ const Detail = (props) => {
             paddingVertical: 10,
             paddingHorizontal: 10
         },
-        innercontainer: {
-            flexDirection: 'row'
-        },
-        sizecontainer: {
-            flexDirection: 'row',
-            marginHorizontal: 25
-        },
+
     })
-
-    const setColorFilter = color => {
-        setColor(color)
-    }
-
-    const setSizeFilter = size => {
-        setSize(size)
-    }
 
     return (
         <LinearGradient
@@ -142,52 +113,52 @@ const Detail = (props) => {
                         disabled={btn}
                         style={styles.addtextbutton}
                     >
-                        <Text style={{ color: '#000' }}>
-                            Add
+                        <Text style={{ color: '#fff', fontFamily: 'BungeeShade-Regular', }}>
+                            ADD
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.innercontainer}>
-                    <View
-                        style={styles.sizecontainer}
-                    >
-                        {
-                            Colorlist.map(e => (
-                                <TouchableOpacity
-                                    onPress={() => setColorFilter(e.color)}
-                                    key={e.id}
-                                    style={[styles.btncolorNormal, color === e.color && styles.btncolorPress]}
-                                >
-                                    <View
-                                        style={{
-                                            backgroundColor: e.color,
-                                            width: 30,
-                                            height: 30,
-                                            borderRadius: 15,
-                                        }}
-                                    />
-                                </TouchableOpacity>
-                            ))
-                        }
-                    </View>
-                    <View
-                        style={styles.sizecontainer}
-                    >
-                        {
-                            Fontsizelist.map(e => (
-                                <TouchableOpacity
-                                    onPress={() => setSizeFilter(e.size)}
-                                    key={e.id}
-                                    style={[styles.btnsizeNormal, size === e.size && styles.btnsizePress]}
-                                >
-                                    <Text style={{ color: '#000' }}>
-                                        {e.size}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))
-                        }
-                    </View>
-                </View>
+
+                <DropDownPicker
+                    open={colerOpen}
+                    value={colervalue}
+                    items={colorData}
+                    setOpen={setColerOpen}
+                    setValue={setColerValue}
+                    setItems={setColorData}
+
+                    style={{
+                        width: 200,
+                    }}
+                />
+
+
+                <DropDownPicker
+                    open={sizeOpen}
+                    value={sizevalue}
+                    items={sizeData}
+                    setOpen={setSizerOpen}
+                    setValue={setSizeValue}
+                    setItems={setSizeData}
+
+                    style={{
+                        width: 200,
+
+                    }}
+                />
+                <DropDownPicker
+                    open={fontOpen}
+                    value={fontvalue}
+                    items={fontData}
+                    setOpen={setFontOpen}
+                    setValue={setFontValue}
+                    setItems={setFontData}
+
+                    style={{
+                        width: 200,
+
+                    }}
+                />
 
             </View>
             <Image
@@ -202,8 +173,8 @@ const Detail = (props) => {
                             renderText='ffff'
                             renderSize={100}
                             renderColor=''
-                            x={drag01.x + index * 60}
-                            y={drag01.y + 30}
+                            x={drag01.x}
+                            y={drag01.y + index * 60}
                             shouldReverse={shouldReverse}
                             onReverse={() => {
                                 setShouldReverse(false);
@@ -226,38 +197,57 @@ export default Detail;
 
 const Colorlist = [
     {
-        id: 1,
-        "color": "black"
+        "label": "black",
+        "value": "black"
     },
     {
-        id: 2,
-        "color": "red"
+        "label": "red",
+        "value": "red"
     },
     {
-        id: 3,
-        "color": "white"
+        "label": "white",
+        "value": "white"
     },
     {
-        id: 4,
-        "color": "gray"
+        "label": "gray",
+        "value": "gray"
     },
 ]
 
-const Fontsizelist = [
+const Sizelist = [
     {
-        id: 1,
-        "size": 14
+        "label": 14,
+        "value": 14
     },
     {
-        id: 2,
-        "size": 20
+        "label": 20,
+        "value": 20
     },
     {
-        id: 3,
-        "size": 26
+        "label": 26,
+        "value": 26
     },
     {
-        id: 4,
-        "size": 30
+        "label": 30,
+        "value": 30
+    },
+]
+
+const Fontlist = [
+    {
+        "label": 'SpecialElite-Regular',
+        "value": 'SpecialElite-Regular'
+    },
+    {
+        "label": 'Pacifico-Regular',
+        "value": 'Pacifico-Regular'
+    },
+    {
+        "label": 'BungeeShade-Regular',
+        "value": 'BungeeShade-Regular'
+    },
+    {
+        "label": 'DiplomataSC-Regular',
+        "value": 'DiplomataSC-Regular'
     },
 ]
