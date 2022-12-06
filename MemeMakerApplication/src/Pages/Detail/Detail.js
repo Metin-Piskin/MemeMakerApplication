@@ -11,7 +11,7 @@ const Detail = (props) => {
     const [list, setList] = useState([]);
     const [text, setText] = useState([]);
     const [shouldReverse, setShouldReverse] = useState(false);
-    const [drag01, setDrag01] = useState({ x: 270, y: 170 });
+    const [drag01, setDrag01] = useState({ x: 25, y: 200 });
     const [btn, setBtn] = useState(false);
 
     const [colerOpen, setColerOpen] = useState(false);
@@ -23,7 +23,7 @@ const Detail = (props) => {
     const [sizeData, setSizeData] = useState(Sizelist);
 
     const [fontOpen, setFontOpen] = useState(false);
-    const [fontvalue, setFontValue] = useState('SpecialElite-Regular');
+    const [fontvalue, setFontValue] = useState('null');
     const [fontData, setFontData] = useState(Fontlist);
 
 
@@ -52,20 +52,27 @@ const Detail = (props) => {
             maxHeight: 341,
             resizeMode: 'contain',
             alignSelf: 'center',
-            marginTop: 15,
+            marginTop: 110,
         },
         list: {
             color: colervalue,
             padding: 5,
             maxWidth: 160,
-            lineHeight: 23,
+            //lineHeight: 35,
             flexWrap: 'wrap',
             fontSize: sizevalue,
             fontFamily: fontvalue
         },
         imput: {
+            backgroundColor: '#fff',
+            margin: 0,
+            borderRadius: 10,
+            padding: 7,
+            flex: 1
+        },
+        imputnull: {
             backgroundColor: '#e0e0e0',
-            margin: 10,
+            margin: 0,
             borderRadius: 10,
             padding: 7,
             flex: 1
@@ -74,18 +81,45 @@ const Detail = (props) => {
             backgroundColor: '#FFA351FF',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingHorizontal: 8,
-            borderRadius: 80,
+            paddingHorizontal: 10,
+            marginLeft: 10,
+            borderRadius: 10,
             borderWidth: 5,
-            borderColor: '#fff'
+            borderColor: '#fff',
+        },
+        addtextbuttonnull: {
+            backgroundColor: '#FFA351FF',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: 10,
+            marginLeft: 10,
+            borderRadius: 10,
+            borderWidth: 5,
+            borderColor: '#e0e0e0',
+        },
+        addtext: {
+            color: '#fff',
+            fontFamily: 'PermanentMarker-Regular',
+        },
+        addtextnull: {
+            color: '#e0e0e0',
+            fontFamily: 'PermanentMarker-Regular',
         },
         editcontainer: {
             flexDirection: 'row',
             justifyContent: 'space-between',
             paddingVertical: 10,
-            paddingHorizontal: 10
+            paddingHorizontal: 15
         },
-
+        dropdowncontainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginHorizontal: 15
+        },
+        dropdownspam: {
+            backgroundColor: '#fff',
+            borderWidth: 0,
+        }
     })
 
     return (
@@ -105,61 +139,75 @@ const Detail = (props) => {
                         testID='input-area'
                         placeholder='Text..'
                         onChangeText={setText}
-                        style={styles.imput}
+                        style={[styles.imput, btn && styles.imputnull]}
+                        placeholderTextColor={!btn ? 'black' : 'gray'}
                         multiline={true}
                     />
                     <TouchableOpacity
                         onPress={addToList}
                         disabled={btn}
-                        style={styles.addtextbutton}
+                        style={[styles.addtextbutton, btn && styles.addtextbuttonnull]}
                     >
-                        <Text style={{ color: '#fff', fontFamily: 'BungeeShade-Regular', }}>
+                        <Text
+                            style={[styles.addtext, btn && styles.addtextnull]}>
                             ADD
                         </Text>
                     </TouchableOpacity>
                 </View>
 
-                <DropDownPicker
-                    open={colerOpen}
-                    value={colervalue}
-                    items={colorData}
-                    setOpen={setColerOpen}
-                    setValue={setColerValue}
-                    setItems={setColorData}
-
-                    style={{
-                        width: 200,
-                    }}
-                />
-
-
-                <DropDownPicker
-                    open={sizeOpen}
-                    value={sizevalue}
-                    items={sizeData}
-                    setOpen={setSizerOpen}
-                    setValue={setSizeValue}
-                    setItems={setSizeData}
-
-                    style={{
-                        width: 200,
-
-                    }}
-                />
-                <DropDownPicker
-                    open={fontOpen}
-                    value={fontvalue}
-                    items={fontData}
-                    setOpen={setFontOpen}
-                    setValue={setFontValue}
-                    setItems={setFontData}
-
-                    style={{
-                        width: 200,
-
-                    }}
-                />
-
+                <View style={styles.dropdowncontainer}>
+                    <DropDownPicker
+                        open={colerOpen}
+                        value={colervalue}
+                        items={colorData}
+                        setOpen={setColerOpen}
+                        setValue={setColerValue}
+                        setItems={setColorData}
+                        containerStyle={{
+                            width: 75,
+                            zIndex: 300,
+                        }}
+                        style={styles.dropdownspam}
+                        dropDownContainerStyle={styles.dropdownspam}
+                        disableBorderRadius={false}
+                        maxHeight={410}
+                    />
+                    <DropDownPicker
+                        open={sizeOpen}
+                        value={sizevalue}
+                        items={sizeData}
+                        setOpen={setSizerOpen}
+                        setValue={setSizeValue}
+                        setItems={setSizeData}
+                        containerStyle={{
+                            width: 75,
+                            zIndex: 200
+                        }}
+                        style={styles.dropdownspam}
+                        dropDownContainerStyle={styles.dropdownspam}
+                        selectedItemLabelStyle={{ color: 'black' }}
+                        listItemLabelStyle={{ color: 'gray' }}
+                        disableBorderRadius={false}
+                    />
+                    <DropDownPicker
+                        open={fontOpen}
+                        value={fontvalue}
+                        items={fontData}
+                        setOpen={setFontOpen}
+                        setValue={setFontValue}
+                        setItems={setFontData}
+                        containerStyle={{
+                            width: 200,
+                            zIndex: 100
+                        }}
+                        style={styles.dropdownspam}
+                        dropDownContainerStyle={styles.dropdownspam}
+                        selectedItemLabelStyle={{ color: 'black' }}
+                        listItemLabelStyle={{ color: 'gray' }}
+                        disableBorderRadius={false}
+                        maxHeight={410}
+                    />
+                </View>
             </View>
             <Image
                 source={{ uri: item.url }}
@@ -173,8 +221,8 @@ const Detail = (props) => {
                             renderText='ffff'
                             renderSize={100}
                             renderColor=''
-                            x={drag01.x}
-                            y={drag01.y + index * 60}
+                            x={drag01.x + index * 60}
+                            y={drag01.y}
                             shouldReverse={shouldReverse}
                             onReverse={() => {
                                 setShouldReverse(false);
@@ -197,24 +245,48 @@ export default Detail;
 
 const Colorlist = [
     {
-        "label": "black",
+        "label": "⚫",
         "value": "black"
     },
     {
-        "label": "red",
+        "label": "🔴",
         "value": "red"
     },
     {
-        "label": "white",
+        "label": "⚪",
         "value": "white"
     },
     {
-        "label": "gray",
-        "value": "gray"
+        "label": "🟢",
+        "value": "green"
+    },
+    {
+        "label": "🔵",
+        "value": "blue"
+    },
+    {
+        "label": "🟡",
+        "value": "yellow"
+    },
+    {
+        "label": "🟣",
+        "value": "purple"
+    },
+    {
+        "label": "🟠",
+        "value": "orange"
+    },
+    {
+        "label": "🟤",
+        "value": "brown"
     },
 ]
 
 const Sizelist = [
+    {
+        "label": 10,
+        "value": 10
+    },
     {
         "label": 14,
         "value": 14
@@ -235,19 +307,40 @@ const Sizelist = [
 
 const Fontlist = [
     {
-        "label": 'SpecialElite-Regular',
+        "label": 'Default',
+        "value": 'null'
+    },
+    {
+        "label": 'SpecialElite',
         "value": 'SpecialElite-Regular'
     },
     {
-        "label": 'Pacifico-Regular',
+        "label": 'Pacifico',
         "value": 'Pacifico-Regular'
     },
     {
-        "label": 'BungeeShade-Regular',
+        "label": 'BungeeShade',
         "value": 'BungeeShade-Regular'
     },
     {
-        "label": 'DiplomataSC-Regular',
+        "label": 'DiplomataSC',
         "value": 'DiplomataSC-Regular'
     },
+    {
+        "label": 'Caveat',
+        "value": 'Caveat-Medium'
+    },
+    {
+        "label": 'HanaleiFill',
+        "value": 'HanaleiFill-Regular'
+    },
+    {
+        "label": 'Nabla',
+        "value": 'Nabla-Regular-VariableFont_EDPT,EHLT'
+    },
+    {
+        "label": 'PermanentMarker',
+        "value": 'PermanentMarker-Regular'
+    },
+
 ]

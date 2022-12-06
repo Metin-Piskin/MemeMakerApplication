@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     detailcontainer: {
         backgroundColor: '#FFA351FF',
         borderColor: '#fff',
-        borderWidth: 1,
+        //borderWidth: 1,
         flexDirection: 'row',
         marginHorizontal: 5,
     },
