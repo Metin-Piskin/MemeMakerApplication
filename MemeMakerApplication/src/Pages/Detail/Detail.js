@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, Image, TextInput, Button, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import DropDownPicker from 'react-native-dropdown-picker';
+import ViewShot from "react-native-view-shot";
+import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 
 import Draggable from '../../Components/Draggable';
 import Header from '../../Components/Header';
@@ -26,6 +28,14 @@ const Detail = (props) => {
     const [fontvalue, setFontValue] = useState('null');
     const [fontData, setFontData] = useState(Fontlist);
 
+
+    const ref = useRef();
+    const takeScreenShot = () => {
+        ref.current.capture().then(uri => {
+            CameraRoll.save(uri, { type: "photo", album: "Meme Maker" });
+            alert("Took screenshot");
+        });
+    };
 
     const addToList = () => {
         if (!text) {
@@ -209,34 +219,53 @@ const Detail = (props) => {
                     />
                 </View>
             </View>
-            <Image
-                source={{ uri: item.url }}
+            <ViewShot
+                ref={ref}
                 style={styles.image}
-            />
-            {
-                list.map((list, index) => {
-                    return (
-                        <Draggable
-                            key={index}
-                            renderText='ffff'
-                            renderSize={100}
-                            renderColor=''
-                            x={drag01.x + index * 60}
-                            y={drag01.y}
-                            shouldReverse={shouldReverse}
-                            onReverse={() => {
-                                setShouldReverse(false);
-                                return { x: 0, y: 100 }
-                            }}
-                        >
-                            <Text style={styles.list}>
-                                {list}
-                            </Text>
-                        </Draggable>
+                options={{
+                    fileName: 'file-name',
+                    format: 'jpg',
+                    quality: 0.9
+                }} >
+                <Image
+                    source={{ uri: item.url }}
+                    style={{
+                        width: item.width,
+                        maxWidth: 391,
+                        height: item.height,
+                        maxHeight: 341,
+                        resizeMode: 'contain',
+                        alignSelf: 'center',
 
-                    )
-                })
-            }
+                    }}
+                />
+                <Button title='Bas' onPress={takeScreenShot} />
+                {
+                    list.map((list, index) => {
+                        return (
+                            <Draggable
+                                key={index}
+                                renderText='ffff'
+                                renderSize={100}
+                                renderColor=''
+                                x={drag01.x + index * 60}
+                                y={drag01.y}
+                                shouldReverse={shouldReverse}
+                                onReverse={() => {
+                                    setShouldReverse(false);
+                                    return { x: 0, y: 100 }
+                                }}
+                            >
+                                <Text style={styles.list}>
+                                    {list}
+                                </Text>
+                            </Draggable>
+
+                        )
+                    })
+                }
+            </ViewShot>
+
         </LinearGradient>
     );
 }
