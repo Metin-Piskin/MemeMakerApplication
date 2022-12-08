@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import DropDownPicker from 'react-native-dropdown-picker';
 import ViewShot from "react-native-view-shot";
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Draggable from '../../Components/Draggable';
 import Header from '../../Components/Header';
@@ -28,12 +29,11 @@ const Detail = (props) => {
     const [fontvalue, setFontValue] = useState('null');
     const [fontData, setFontData] = useState(Fontlist);
 
-
     const ref = useRef();
     const takeScreenShot = () => {
         ref.current.capture().then(uri => {
             CameraRoll.save(uri, { type: "photo", album: "Meme Maker" });
-            alert("Took screenshot");
+            alert("Picture Saved");
         });
     };
 
@@ -59,10 +59,10 @@ const Detail = (props) => {
             width: item.width,
             maxWidth: 391,
             height: item.height,
-            maxHeight: 341,
+            maxHeight: 391,
             resizeMode: 'contain',
             alignSelf: 'center',
-            marginTop: 110,
+            marginTop: 50,
         },
         list: {
             color: colervalue,
@@ -129,7 +129,20 @@ const Detail = (props) => {
         dropdownspam: {
             backgroundColor: '#fff',
             borderWidth: 0,
-        }
+        },
+        save: {
+            backgroundColor: '#EED971FF',
+            borderColor: '#fff',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+            width: 105,
+            height: 60,
+            borderWidth: 5,
+            marginVertical: 10,
+            borderRadius: 10,
+            flexDirection: 'row'
+        },
     })
 
     return (
@@ -233,13 +246,22 @@ const Detail = (props) => {
                         width: item.width,
                         maxWidth: 391,
                         height: item.height,
-                        maxHeight: 341,
+                        maxHeight: 391,
                         resizeMode: 'contain',
                         alignSelf: 'center',
 
                     }}
                 />
-                <Button title='Bas' onPress={takeScreenShot} />
+                <TouchableOpacity
+                    onPress={takeScreenShot}
+                    style={styles.save}
+                >
+                    <MaterialIcons
+                        name='save-alt'
+                        size={40}
+                        color='#fff'
+                    />
+                </TouchableOpacity>
                 {
                     list.map((list, index) => {
                         return (
