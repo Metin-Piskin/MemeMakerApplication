@@ -40,7 +40,7 @@ const Home = ({ navigation }) => {
                 ]}
                 style={styles.container}
             >
-                <Header home={true} />
+                <Header home={true} detailPress={() => navigation.navigate('Detail', { item: null })} />
                 <StatusBar barStyle={'light-content'} backgroundColor={'#FFA351FF'} />
                 <FlashList
                     data={veri.data.memes}

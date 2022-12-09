@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-const Header = ({ home, backPress }) => {
+const Header = ({ home, backPress, detailPress }) => {
     return (
         home ? (
 
@@ -10,6 +10,9 @@ const Header = ({ home, backPress }) => {
                 <Text style={styles.hometext}>
                     Meme Maker
                 </Text>
+                <TouchableOpacity onPress={detailPress} style={styles.homepluscontainer}>
+                    <Text style={styles.homeplus}>+</Text>
+                </TouchableOpacity>
             </View>
 
 
@@ -41,13 +44,27 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         marginHorizontal: 5,
+        paddingHorizontal: Dimensions.get('screen').width / 4.04,
+        flexDirection: 'row'
     },
     hometext: {
         fontFamily: 'Pacifico-Regular',
         fontSize: 30,
         color: '#fff'
+    },
+    homepluscontainer: {
+       // borderWidth: 1,
+        marginLeft: 45,
+        borderRadius: 5,
+        borderColor: '#fff'
+    },
+    homeplus: {
+       // padding: 5,
+        color:'#fff',
+        fontSize:44,
+        paddingHorizontal:10,
     },
     detailcontainer: {
         backgroundColor: '#FFA351FF',
