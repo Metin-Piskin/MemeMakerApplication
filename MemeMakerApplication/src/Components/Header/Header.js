@@ -5,17 +5,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 const Header = ({ home, backPress, detailPress }) => {
     return (
         home ? (
-
             <View style={styles.homecontainer}>
                 <Text style={styles.hometext}>
                     Meme Maker
                 </Text>
-                <TouchableOpacity onPress={detailPress} style={styles.homepluscontainer}>
-                    <Text style={styles.homeplus}>+</Text>
-                </TouchableOpacity>
             </View>
-
-
         ) : (
             <View style={styles.detailcontainer}>
                 <TouchableOpacity
@@ -30,7 +24,6 @@ const Header = ({ home, backPress, detailPress }) => {
                 </TouchableOpacity>
                 <Text style={styles.text}>Meme Edit</Text>
             </View>
-
         )
 
     )
@@ -41,13 +34,11 @@ export default Header;
 const styles = StyleSheet.create({
     homecontainer: {
         backgroundColor: '#FFA351FF',
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         marginHorizontal: 5,
-        paddingHorizontal: Dimensions.get('screen').width / 4.04,
-        flexDirection: 'row'
     },
     hometext: {
         fontFamily: 'Pacifico-Regular',
@@ -55,16 +46,16 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     homepluscontainer: {
-       // borderWidth: 1,
+        // borderWidth: 1,
         marginLeft: 45,
         borderRadius: 5,
         borderColor: '#fff'
     },
     homeplus: {
-       // padding: 5,
-        color:'#fff',
-        fontSize:44,
-        paddingHorizontal:10,
+        // padding: 5,
+        color: '#fff',
+        fontSize: 44,
+        paddingHorizontal: 10,
     },
     detailcontainer: {
         backgroundColor: '#FFA351FF',

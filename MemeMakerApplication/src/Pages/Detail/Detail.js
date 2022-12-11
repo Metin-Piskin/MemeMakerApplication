@@ -6,16 +6,17 @@ import ViewShot from "react-native-view-shot";
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { RadioButton } from 'react-native-paper';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 import Draggable from '../../Components/Draggable';
 import Header from '../../Components/Header';
 
 const Detail = (props) => {
-    const { item } = props.route.params;
+    const { item, box_count } = props.route.params;
     const [list, setList] = useState([]);
     const [text, setText] = useState([]);
     const [shouldReverse, setShouldReverse] = useState(false);
-    const [drag01, setDrag01] = useState({ x: 25, y: 200 });
+    const [drag01, setDrag01] = useState({ x: 175, y: 10 });
     const [btn, setBtn] = useState(false);
 
     const [colerOpen, setColerOpen] = useState(false);
@@ -31,7 +32,9 @@ const Detail = (props) => {
     const [fontData, setFontData] = useState(Fontlist);
 
     const [checked, setChecked] = useState('');
-    const [plusimage, setPlusimage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1707px-Plus_symbol.svg.png');
+    const [imageGallery, setImageGallery] = useState(null);
+
+    const plusimage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1707px-Plus_symbol.svg.png';
 
     const ref = useRef();
     const takeScreenShot = () => {
@@ -53,6 +56,35 @@ const Detail = (props) => {
                 setBtn(false)
             )
         }
+    }
+
+    const addgaleryToList = () => {
+        if (!text) {
+            return;
+        }
+        setList([...list, text]);
+        setBtn(false)
+    }
+
+    const openGallery = () => {
+        const option = {
+            mediaType: 'photo',
+            qualiy: 1,
+        }
+
+        launchImageLibrary(option, (res) => {
+            if (res.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (res.errorCode) {
+                console.log(res.errorMessage);
+            }
+            else {
+                const data = res.assets[0]
+                setImageGallery(data)
+                console.log(data);
+            }
+        })
     }
 
     const styles = StyleSheet.create({
@@ -176,7 +208,7 @@ const Detail = (props) => {
                         multiline={true}
                     />
                     <TouchableOpacity
-                        onPress={addToList}
+                        onPress={box_count ? (addgaleryToList) : (addToList)}
                         disabled={btn}
                         style={[styles.addtextbutton, btn && styles.addtextbuttonnull]}
                     >
@@ -275,19 +307,35 @@ const Detail = (props) => {
                             format: 'jpg',
                             quality: 0.9
                         }} >
-                        <TouchableOpacity>
-                            <Image
-                                source={{ uri: plusimage }}
-                                style={{
-                                    // width: item.width,
-                                    width: 391,
-                                    //height: item.height,
-                                    height: 391,
-                                    resizeMode: 'contain',
-                                    alignSelf: 'center',
-                                }}
-                            />
-                        </TouchableOpacity>
+                        {
+                            imageGallery === null ? (
+                                <TouchableOpacity onPress={openGallery}>
+                                    <Image
+                                        source={{ uri: plusimage }}
+                                        style={{
+                                            // width: item.width,
+                                            width: 391,
+                                            //height: item.height,
+                                            height: 391,
+                                            resizeMode: 'contain',
+                                            alignSelf: 'center',
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            ) : (
+                                <Image
+                                    source={{ uri: imageGallery.uri }}
+                                    style={{
+                                        // width: item.width,
+                                        width: 391,
+                                        //height: item.height,
+                                        height: 391,
+                                        resizeMode: 'contain',
+                                        alignSelf: 'center',
+                                    }}
+                                />
+                            )
+                        }
                         <TouchableOpacity
                             onPress={takeScreenShot}
                             style={styles.save}
@@ -306,8 +354,8 @@ const Detail = (props) => {
                                         renderText='ffff'
                                         renderSize={100}
                                         renderColor={checked}
-                                        x={drag01.x + index * 60}
-                                        y={drag01.y}
+                                        x={drag01.x}
+                                        y={drag01.y + index * 60}
                                         shouldReverse={shouldReverse}
                                         onReverse={() => {
                                             setShouldReverse(false);
@@ -362,8 +410,8 @@ const Detail = (props) => {
                                         renderText='ffff'
                                         renderSize={100}
                                         renderColor={checked}
-                                        x={drag01.x + index * 60}
-                                        y={drag01.y}
+                                        x={drag01.x}
+                                        y={drag01.y + index * 60}
                                         shouldReverse={shouldReverse}
                                         onReverse={() => {
                                             setShouldReverse(false);
