@@ -33,15 +33,17 @@ export default Header;
 
 const styles = StyleSheet.create({
     homecontainer: {
-        backgroundColor: '#FFA351FF',
+        backgroundColor: '#161718',
         //borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 5,
+        paddingVertical: 5
     },
     hometext: {
-        fontFamily: 'Pacifico-Regular',
+        fontFamily: 'SpecialElite-Regular',
         fontSize: 30,
         color: '#fff'
     },
@@ -58,11 +60,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     detailcontainer: {
-        backgroundColor: '#FFA351FF',
+        backgroundColor: '#161718',
         borderColor: '#fff',
-        //borderWidth: 1,
+        borderBottomWidth: 1,
         flexDirection: 'row',
         marginHorizontal: 5,
+        paddingVertical: 5,
     },
     backbutton: {
         alignSelf: 'center',
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
     text: {
         alignSelf: 'center',
         fontSize: 30,
-        fontFamily: 'Pacifico-Regular',
+        fontFamily: 'SpecialElite-Regular',
         color: '#fff',
         justifyContent: 'center',
         left: Dimensions.get('screen').width / 4.6

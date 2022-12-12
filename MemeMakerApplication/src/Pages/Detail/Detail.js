@@ -117,14 +117,14 @@ const Detail = (props) => {
             flex: 1
         },
         imputnull: {
-            backgroundColor: '#e0e0e0',
+            backgroundColor: '#2C2C2E',
             margin: 0,
             borderRadius: 10,
             padding: 7,
             flex: 1
         },
         addtextbutton: {
-            backgroundColor: '#FFA351FF',
+            backgroundColor: '#161718',
             alignItems: 'center',
             justifyContent: 'center',
             paddingHorizontal: 10,
@@ -134,21 +134,21 @@ const Detail = (props) => {
             borderColor: '#fff',
         },
         addtextbuttonnull: {
-            backgroundColor: '#FFA351FF',
+            backgroundColor: '#161718',
             alignItems: 'center',
             justifyContent: 'center',
             paddingHorizontal: 10,
             marginLeft: 10,
             borderRadius: 10,
             borderWidth: 5,
-            borderColor: '#e0e0e0',
+            borderColor: '#2C2C2E',
         },
         addtext: {
             color: '#fff',
             fontFamily: 'PermanentMarker-Regular',
         },
         addtextnull: {
-            color: '#e0e0e0',
+            color: '#2C2C2E',
             fontFamily: 'PermanentMarker-Regular',
         },
         editcontainer: {
@@ -167,7 +167,7 @@ const Detail = (props) => {
             borderWidth: 0,
         },
         save: {
-            backgroundColor: '#EED971FF',
+            backgroundColor: '#2C2C2E',
             borderColor: '#fff',
             justifyContent: 'center',
             alignItems: 'center',
@@ -190,9 +190,8 @@ const Detail = (props) => {
         <LinearGradient
             colors=
             {[
-                '#FFA351FF',
-                '#FFBE7BFF',
-                '#EED971FF',
+                '#161718',
+                '#2C2C2E',
             ]}
             style={styles.container}
         >
@@ -273,8 +272,8 @@ const Detail = (props) => {
                     />
                 </View>
                 <View style={styles.radiocontainer}>
-                    <Text style={{ alignSelf: 'center', color: '#000' }} >
-                        Şeffaf
+                    <Text style={{ alignSelf: 'center', color: '#fff' }} >
+                        Transparent
                     </Text>
                     <RadioButton
                         value="first"
@@ -285,7 +284,7 @@ const Detail = (props) => {
                     />
                 </View>
                 <View style={styles.radiocontainer}>
-                    <Text style={{ alignSelf: 'center', color: '#000' }}>
+                    <Text style={{ alignSelf: 'center', color: '#fff' }}>
                         White
                     </Text>
                     <RadioButton
@@ -315,6 +314,7 @@ const Detail = (props) => {
                                         style={{
                                             // width: item.width,
                                             width: 391,
+                                            tintColor: '#fff',
                                             //height: item.height,
                                             height: 391,
                                             resizeMode: 'contain',

@@ -34,14 +34,13 @@ const Home = ({ navigation }) => {
         <LinearGradient
             colors=
             {[
-                '#FFA351FF',
-                '#FFBE7BFF',
-                '#EED971FF',
+                '#161718',
+                '#2C2C2E',
             ]}
             style={styles.container}
         >
             <Header home={true} />
-            <StatusBar barStyle={'light-content'} backgroundColor={'#FFA351FF'} />
+            <StatusBar barStyle={'light-content'} backgroundColor={'#161718'} />
             <FlashList
                 data={veri.data.memes}
                 renderItem={RenderVeri}
@@ -61,6 +60,6 @@ export default Home;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     }
 })

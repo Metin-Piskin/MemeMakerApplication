@@ -11,16 +11,15 @@ const PlusButton = ({ onPress }) => {
             <LinearGradient
                 colors=
                 {[
-                    '#FFA351FF',
-                    '#FFBE7BFF',
-                    '#EED971FF',
+                    '#161718',
+                    '#2C2C2E',
                 ]}
                 style={styles.container}
             >
                 <Feather
                     name='plus'
                     size={40}
-                    color='#fff'
+                    color='#C7C6CB'
                     style={styles.text}
                 />
 
