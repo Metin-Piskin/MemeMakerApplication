@@ -22,7 +22,7 @@ const Header = ({ home, backPress, detailPress }) => {
                         color='#fff'
                     />
                 </TouchableOpacity>
-                <Text style={styles.text}>Meme Edit</Text>
+                <Text style={styles.text}>Edit</Text>
             </View>
         )
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SpecialElite-Regular',
         color: '#fff',
         justifyContent: 'center',
-        left: Dimensions.get('screen').width / 4.6
+        left: Dimensions.get('screen').width / 2.95
     },
 
 })

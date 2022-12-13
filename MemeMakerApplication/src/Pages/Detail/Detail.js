@@ -130,7 +130,7 @@ const Detail = (props) => {
             paddingHorizontal: 10,
             marginLeft: 10,
             borderRadius: 10,
-            borderWidth: 5,
+            borderWidth: 4,
             borderColor: '#fff',
         },
         addtextbuttonnull: {
@@ -140,16 +140,16 @@ const Detail = (props) => {
             paddingHorizontal: 10,
             marginLeft: 10,
             borderRadius: 10,
-            borderWidth: 5,
+            borderWidth: 4,
             borderColor: '#2C2C2E',
         },
         addtext: {
             color: '#fff',
-            fontFamily: 'PermanentMarker-Regular',
+            fontFamily: 'SpecialElite-Regular',
         },
         addtextnull: {
             color: '#2C2C2E',
-            fontFamily: 'PermanentMarker-Regular',
+            fontFamily: 'SpecialElite-Regular',
         },
         editcontainer: {
             flexDirection: 'row',
