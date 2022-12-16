@@ -1,0 +1,38 @@
+[
+    {
+        "label": "Default",
+        "value": "null"
+    },
+    {
+        "label": "SpecialElite",
+        "value": "SpecialElite-Regular"
+    },
+    {
+        "label": "Pacifico",
+        "value": "Pacifico-Regular"
+    },
+    {
+        "label": "BungeeShade",
+        "value": "BungeeShade-Regular"
+    },
+    {
+        "label": "DiplomataSC",
+        "value": "DiplomataSC-Regular"
+    },
+    {
+        "label": "Caveat",
+        "value": "Caveat-Medium"
+    },
+    {
+        "label": "HanaleiFill",
+        "value": "HanaleiFill-Regular"
+    },
+    {
+        "label": "Nabla",
+        "value": "Nabla-Regular-VariableFont_EDPT,EHLT"
+    },
+    {
+        "label": "PermanentMarker",
+        "value": "PermanentMarker-Regular"
+    }
+]

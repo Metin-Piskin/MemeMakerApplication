@@ -1,15 +1,22 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, Image, TextInput, Button, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import DropDownPicker from 'react-native-dropdown-picker';
 import ViewShot from "react-native-view-shot";
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { RadioButton } from 'react-native-paper';
 import { launchImageLibrary } from 'react-native-image-picker';
+
+import Colorlist from '../../Data/Colorlist.json';
+import Sizelist from '../../Data/Sizelist.json';
+import Fontlist from '../../Data/Fontlist.json';
 
 import Draggable from '../../Components/Draggable';
 import Header from '../../Components/Header';
+import TextAdd from '../../Components/TextAdd';
+import DropDownPicker from '../../Components/DropDownPicker';
+import RadioButtonCom from '../../Components/RadioButton';
+import SaveButton from '../../Components/SaveButton';
+
+const plusimage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1707px-Plus_symbol.svg.png';
 
 const Detail = (props) => {
     const { item, box_count } = props.route.params;
@@ -34,7 +41,6 @@ const Detail = (props) => {
     const [checked, setChecked] = useState('');
     const [imageGallery, setImageGallery] = useState(null);
 
-    const plusimage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1707px-Plus_symbol.svg.png';
 
     const ref = useRef();
     const takeScreenShot = () => {
@@ -87,104 +93,6 @@ const Detail = (props) => {
         })
     }
 
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-        },
-        image: {
-            width: item?.width,
-            maxWidth: 391,
-            height: item?.height,
-            maxHeight: 391,
-            resizeMode: 'contain',
-            alignSelf: 'center',
-            marginTop: 0,
-        },
-        list: {
-            color: colervalue,
-            padding: 5,
-            maxWidth: 160,
-            //lineHeight: 35,
-            flexWrap: 'wrap',
-            fontSize: sizevalue,
-            fontFamily: fontvalue
-        },
-        imput: {
-            backgroundColor: '#fff',
-            margin: 0,
-            borderRadius: 10,
-            padding: 7,
-            flex: 1
-        },
-        imputnull: {
-            backgroundColor: '#2C2C2E',
-            margin: 0,
-            borderRadius: 10,
-            padding: 7,
-            flex: 1
-        },
-        addtextbutton: {
-            backgroundColor: '#161718',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingHorizontal: 10,
-            marginLeft: 10,
-            borderRadius: 10,
-            borderWidth: 4,
-            borderColor: '#fff',
-        },
-        addtextbuttonnull: {
-            backgroundColor: '#161718',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingHorizontal: 10,
-            marginLeft: 10,
-            borderRadius: 10,
-            borderWidth: 4,
-            borderColor: '#2C2C2E',
-        },
-        addtext: {
-            color: '#fff',
-            fontFamily: 'SpecialElite-Regular',
-        },
-        addtextnull: {
-            color: '#2C2C2E',
-            fontFamily: 'SpecialElite-Regular',
-        },
-        editcontainer: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingVertical: 10,
-            paddingHorizontal: 15
-        },
-        dropdowncontainer: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 15
-        },
-        dropdownspam: {
-            backgroundColor: '#fff',
-            borderWidth: 0,
-        },
-        save: {
-            backgroundColor: '#2C2C2E',
-            borderColor: '#fff',
-            justifyContent: 'center',
-            alignItems: 'center',
-            alignSelf: 'center',
-            width: 105,
-            height: 60,
-            borderWidth: 5,
-            marginVertical: 5,
-            borderRadius: 10,
-            flexDirection: 'row'
-        },
-        radiocontainer: {
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            paddingHorizontal: 10
-        }
-    })
 
     return (
         <LinearGradient
@@ -197,27 +105,15 @@ const Detail = (props) => {
         >
             <Header backPress={() => props.navigation.goBack()} />
             <View>
-                <View style={styles.editcontainer}>
-                    <TextInput
-                        testID='input-area'
-                        placeholder='Text..'
-                        onChangeText={setText}
-                        style={[styles.imput, btn && styles.imputnull]}
-                        placeholderTextColor={!btn ? 'black' : 'gray'}
-                        multiline={true}
-                    />
-                    <TouchableOpacity
-                        onPress={box_count ? (addgaleryToList) : (addToList)}
-                        disabled={btn}
-                        style={[styles.addtextbutton, btn && styles.addtextbuttonnull]}
-                    >
-                        <Text
-                            style={[styles.addtext, btn && styles.addtextnull]}>
-                            ADD
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
+                <TextAdd
+                    btn={btn}
+                    placeholder={'Text..'}
+                    onChangeText={setText}
+                    placeholderTextColor={!btn ? 'black' : 'gray'}
+                    multiline={true}
+                    onPress={box_count ? (addgaleryToList) : (addToList)}
+                    disabled={btn}
+                />
                 <View style={styles.dropdowncontainer}>
                     <DropDownPicker
                         open={colerOpen}
@@ -226,13 +122,7 @@ const Detail = (props) => {
                         setOpen={setColerOpen}
                         setValue={setColerValue}
                         setItems={setColorData}
-                        containerStyle={{
-                            width: 75,
-                            zIndex: 300,
-                        }}
-                        style={styles.dropdownspam}
-                        dropDownContainerStyle={styles.dropdownspam}
-                        disableBorderRadius={false}
+                        containerStyle={{ width: 75, zIndex: 300, }}
                         maxHeight={410}
                     />
                     <DropDownPicker
@@ -242,15 +132,9 @@ const Detail = (props) => {
                         setOpen={setSizerOpen}
                         setValue={setSizeValue}
                         setItems={setSizeData}
-                        containerStyle={{
-                            width: 75,
-                            zIndex: 200
-                        }}
-                        style={styles.dropdownspam}
-                        dropDownContainerStyle={styles.dropdownspam}
+                        containerStyle={{ width: 75, zIndex: 200 }}
                         selectedItemLabelStyle={{ color: 'black' }}
                         listItemLabelStyle={{ color: 'gray' }}
-                        disableBorderRadius={false}
                     />
                     <DropDownPicker
                         open={fontOpen}
@@ -259,48 +143,38 @@ const Detail = (props) => {
                         setOpen={setFontOpen}
                         setValue={setFontValue}
                         setItems={setFontData}
-                        containerStyle={{
-                            width: 200,
-                            zIndex: 100
-                        }}
-                        style={styles.dropdownspam}
-                        dropDownContainerStyle={styles.dropdownspam}
+                        containerStyle={{ width: 200, zIndex: 100 }}
                         selectedItemLabelStyle={{ color: 'black' }}
                         listItemLabelStyle={{ color: 'gray' }}
-                        disableBorderRadius={false}
                         maxHeight={410}
                     />
                 </View>
-                <View style={styles.radiocontainer}>
-                    <Text style={{ alignSelf: 'center', color: '#fff' }} >
-                        Transparent
-                    </Text>
-                    <RadioButton
-                        value="first"
-                        status={checked === '' ? 'checked' : 'unchecked'}
-                        onPress={() => setChecked('')}
-                        color='#fff'
-                        uncheckedColor='#fff'
-                    />
-                </View>
-                <View style={styles.radiocontainer}>
-                    <Text style={{ alignSelf: 'center', color: '#fff' }}>
-                        White
-                    </Text>
-                    <RadioButton
-                        value="white"
-                        onPress={() => setChecked('white')}
-                        status={checked === 'white' ? 'checked' : 'unchecked'}
-                        color='#fff'
-                        uncheckedColor='#fff'
-                    />
-                </View>
+                <RadioButtonCom
+                    text={'Transparent'}
+                    value="first"
+                    onPress={() => setChecked('')}
+                    status={checked === '' ? 'checked' : 'unchecked'}
+                />
+                <RadioButtonCom
+                    text={'White'}
+                    value="White"
+                    onPress={() => setChecked('white')}
+                    status={checked === 'white' ? 'checked' : 'unchecked'}
+                />
             </View>
             {
                 item === null ? (
                     <ViewShot
                         ref={ref}
-                        style={styles.image}
+                        style={{
+                            width: item?.width,
+                            maxWidth: 391,
+                            height: item?.height,
+                            maxHeight: 391,
+                            resizeMode: 'contain',
+                            alignSelf: 'center',
+                            marginTop: 0,
+                        }}
                         options={{
                             fileName: 'file-name',
                             format: 'jpg',
@@ -311,41 +185,20 @@ const Detail = (props) => {
                                 <TouchableOpacity onPress={openGallery}>
                                     <Image
                                         source={{ uri: plusimage }}
-                                        style={{
-                                            // width: item.width,
-                                            width: 391,
-                                            tintColor: '#fff',
-                                            //height: item.height,
-                                            height: 391,
-                                            resizeMode: 'contain',
-                                            alignSelf: 'center',
-                                        }}
+                                        style={styles.image}
                                     />
                                 </TouchableOpacity>
                             ) : (
                                 <Image
                                     source={{ uri: imageGallery.uri }}
-                                    style={{
-                                        // width: item.width,
-                                        width: 391,
-                                        //height: item.height,
-                                        height: 391,
-                                        resizeMode: 'contain',
-                                        alignSelf: 'center',
-                                    }}
+                                    style={styles.image}
                                 />
                             )
                         }
-                        <TouchableOpacity
+                        <SaveButton
                             onPress={takeScreenShot}
-                            style={styles.save}
-                        >
-                            <MaterialIcons
-                                name='save-alt'
-                                size={40}
-                                color='#fff'
-                            />
-                        </TouchableOpacity>
+                            iconName='save-alt'
+                        />
                         {
                             list.map((list, index) => {
                                 return (
@@ -362,7 +215,15 @@ const Detail = (props) => {
                                             return { x: 0, y: 100 }
                                         }}
                                     >
-                                        <Text style={styles.list}>
+                                        <Text style={{
+                                            color: colervalue,
+                                            padding: 5,
+                                            maxWidth: 160,
+                                            //lineHeight: 35,
+                                            flexWrap: 'wrap',
+                                            fontSize: sizevalue,
+                                            fontFamily: fontvalue
+                                        }}>
                                             {list}
                                         </Text>
                                     </Draggable>
@@ -374,7 +235,15 @@ const Detail = (props) => {
                 ) : (
                     <ViewShot
                         ref={ref}
-                        style={styles.image}
+                        style={{
+                            width: item?.width,
+                            maxWidth: 391,
+                            height: item?.height,
+                            maxHeight: 391,
+                            resizeMode: 'contain',
+                            alignSelf: 'center',
+                            marginTop: 0,
+                        }}
                         options={{
                             fileName: 'file-name',
                             format: 'jpg',
@@ -392,16 +261,10 @@ const Detail = (props) => {
 
                             }}
                         />
-                        <TouchableOpacity
+                        <SaveButton
                             onPress={takeScreenShot}
-                            style={styles.save}
-                        >
-                            <MaterialIcons
-                                name='save-alt'
-                                size={40}
-                                color='#fff'
-                            />
-                        </TouchableOpacity>
+                            iconName='save-alt'
+                        />
                         {
                             list.map((list, index) => {
                                 return (
@@ -418,122 +281,46 @@ const Detail = (props) => {
                                             return { x: 0, y: 100 }
                                         }}
                                     >
-                                        <Text style={styles.list}>
+                                        <Text style={{
+                                            color: colervalue,
+                                            padding: 5,
+                                            maxWidth: 160,
+                                            //lineHeight: 35,
+                                            flexWrap: 'wrap',
+                                            fontSize: sizevalue,
+                                            fontFamily: fontvalue
+                                        }}>
                                             {list}
                                         </Text>
                                     </Draggable>
-
                                 )
                             })
                         }
                     </ViewShot>
                 )
             }
-
         </LinearGradient>
     );
 }
 
 export default Detail;
 
-const Colorlist = [
-    {
-        "label": "⚫",
-        "value": "black"
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
     },
-    {
-        "label": "🔴",
-        "value": "red"
+    image: {
+        // width: item.width,
+        width: 391,
+        tintColor: '#fff',
+        //height: item.height,
+        height: 391,
+        resizeMode: 'contain',
+        alignSelf: 'center',
     },
-    {
-        "label": "⚪",
-        "value": "white"
+    dropdowncontainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 15
     },
-    {
-        "label": "🟢",
-        "value": "green"
-    },
-    {
-        "label": "🔵",
-        "value": "blue"
-    },
-    {
-        "label": "🟡",
-        "value": "yellow"
-    },
-    {
-        "label": "🟣",
-        "value": "purple"
-    },
-    {
-        "label": "🟠",
-        "value": "orange"
-    },
-    {
-        "label": "🟤",
-        "value": "brown"
-    },
-]
-
-const Sizelist = [
-    {
-        "label": 10,
-        "value": 10
-    },
-    {
-        "label": 14,
-        "value": 14
-    },
-    {
-        "label": 20,
-        "value": 20
-    },
-    {
-        "label": 26,
-        "value": 26
-    },
-    {
-        "label": 30,
-        "value": 30
-    },
-]
-
-const Fontlist = [
-    {
-        "label": 'Default',
-        "value": 'null'
-    },
-    {
-        "label": 'SpecialElite',
-        "value": 'SpecialElite-Regular'
-    },
-    {
-        "label": 'Pacifico',
-        "value": 'Pacifico-Regular'
-    },
-    {
-        "label": 'BungeeShade',
-        "value": 'BungeeShade-Regular'
-    },
-    {
-        "label": 'DiplomataSC',
-        "value": 'DiplomataSC-Regular'
-    },
-    {
-        "label": 'Caveat',
-        "value": 'Caveat-Medium'
-    },
-    {
-        "label": 'HanaleiFill',
-        "value": 'HanaleiFill-Regular'
-    },
-    {
-        "label": 'Nabla',
-        "value": 'Nabla-Regular-VariableFont_EDPT,EHLT'
-    },
-    {
-        "label": 'PermanentMarker',
-        "value": 'PermanentMarker-Regular'
-    },
-
-]
+})

@@ -1,0 +1,38 @@
+[
+    {
+        "label": "⚫",
+        "value": "black"
+    },
+    {
+        "label": "🔴",
+        "value": "red"
+    },
+    {
+        "label": "⚪",
+        "value": "white"
+    },
+    {
+        "label": "🟢",
+        "value": "green"
+    },
+    {
+        "label": "🔵",
+        "value": "blue"
+    },
+    {
+        "label": "🟡",
+        "value": "yellow"
+    },
+    {
+        "label": "🟣",
+        "value": "purple"
+    },
+    {
+        "label": "🟠",
+        "value": "orange"
+    },
+    {
+        "label": "🟤",
+        "value": "brown"
+    }
+]
