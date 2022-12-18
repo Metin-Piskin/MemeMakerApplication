@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "opacity": 1,
+    }
+  }
+  testID="plus-button-press"
+>
+  <LinearGradient
+    colors={
+      [
+        "#161718",
+        "#2C2C2E",
+      ]
+    }
+    style={
+      {
+        "borderRadius": 100,
+        "bottom": 15,
+        "position": "absolute",
+        "right": 15,
+      }
+    }
+    testID="plus-button-container"
+  >
+    <Feather
+      color="#C7C6CB"
+      name="plus"
+      size={40}
+      style={
+        {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "justifyContent": "center",
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
+        }
+      }
+      testID="plus-button-text"
+    />
+  </LinearGradient>
+</View>
+`;

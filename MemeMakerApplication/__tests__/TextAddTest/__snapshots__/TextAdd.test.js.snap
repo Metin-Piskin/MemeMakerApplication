@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "paddingHorizontal": 15,
+      "paddingVertical": 10,
+    }
+  }
+  testID="text-add-container"
+>
+  <TextInput
+    style={
+      {
+        "backgroundColor": "#fff",
+        "borderRadius": 10,
+        "flex": 1,
+        "margin": 0,
+        "padding": 7,
+      }
+    }
+    testID="text-add-input"
+  />
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#161718",
+        "borderColor": "#fff",
+        "borderRadius": 10,
+        "borderWidth": 4,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "opacity": 1,
+        "paddingHorizontal": 10,
+      }
+    }
+    testID="text-add-press"
+  >
+    <Text
+      style={
+        {
+          "color": "#fff",
+          "fontFamily": "SpecialElite-Regular",
+        }
+      }
+      testID="text-add-press-text"
+    >
+      ADD
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders correctly 2`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "paddingHorizontal": 15,
+      "paddingVertical": 10,
+    }
+  }
+  testID="text-add-container"
+>
+  <TextInput
+    style={
+      {
+        "backgroundColor": "#2C2C2E",
+        "borderRadius": 10,
+        "flex": 1,
+        "margin": 0,
+        "padding": 7,
+      }
+    }
+    testID="text-add-input-null"
+  />
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#161718",
+        "borderColor": "#2C2C2E",
+        "borderRadius": 10,
+        "borderWidth": 4,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "opacity": 1,
+        "paddingHorizontal": 10,
+      }
+    }
+    testID="text-add-press-null"
+  >
+    <Text
+      style={
+        {
+          "color": "#2C2C2E",
+          "fontFamily": "SpecialElite-Regular",
+        }
+      }
+      testID="text-add-press-text-null"
+    >
+      ADD
+    </Text>
+  </View>
+</View>
+`;

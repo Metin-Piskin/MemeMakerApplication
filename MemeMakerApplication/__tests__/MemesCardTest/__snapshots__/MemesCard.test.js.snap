@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Text>
+  Veri Yok
+</Text>
+`;
+
+exports[`renders correctly 2`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "borderBottomWidth": 1,
+      "borderColor": "#fff",
+      "borderRadius": 10,
+      "marginTop": 7,
+      "opacity": 1,
+    }
+  }
+  testID="memes-card-press"
+>
+  <Image
+    source={
+      {
+        "uri": undefined,
+      }
+    }
+    style={
+      {
+        "height": 326.0869565217392,
+        "margin": 7,
+        "maxHeight": undefined,
+        "maxWidth": undefined,
+        "resizeMode": "contain",
+        "width": 326.0869565217392,
+      }
+    }
+    testID="memes-card-image"
+  />
+</View>
+`;

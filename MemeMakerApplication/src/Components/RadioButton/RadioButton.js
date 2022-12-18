@@ -6,8 +6,8 @@ import styles from './RadioButton-style';
 
 const RadioButtonComponetn = ({ text, value, onPress, status }) => {
     return (
-        <View style={styles.radiocontainer}>
-            <Text style={styles.text} >
+        <View style={styles.radiocontainer} testID='radio-button-container'>
+            <Text style={styles.text} testID='radio-button-text'>
                 {text}
             </Text>
             <RadioButton

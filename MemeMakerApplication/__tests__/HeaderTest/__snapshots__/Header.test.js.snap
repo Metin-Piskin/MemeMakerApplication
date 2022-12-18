@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#161718",
+      "borderBottomWidth": 1,
+      "borderColor": "#fff",
+      "justifyContent": "center",
+      "marginHorizontal": 5,
+      "paddingVertical": 5,
+    }
+  }
+  testID="header-home-container"
+>
+  <Text
+    style={
+      {
+        "color": "#fff",
+        "fontFamily": "SpecialElite-Regular",
+        "fontSize": 30,
+      }
+    }
+    testID="header-home-home-text"
+  >
+    Meme Maker
+  </Text>
+</View>
+`;
+
+exports[`renders correctly 2`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#161718",
+      "borderBottomWidth": 1,
+      "borderColor": "#fff",
+      "flexDirection": "row",
+      "marginHorizontal": 5,
+      "paddingVertical": 5,
+    }
+  }
+  testID="header-home-detail-container"
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignSelf": "center",
+        "opacity": 1,
+      }
+    }
+    testID="header-home-back-button"
+  >
+    <Ionicons
+      color="#fff"
+      name="caret-back"
+      size={35}
+    />
+  </View>
+  <Text
+    style={
+      {
+        "alignSelf": "center",
+        "color": "#fff",
+        "fontFamily": "SpecialElite-Regular",
+        "fontSize": 30,
+        "justifyContent": "center",
+        "left": 254.23728813559322,
+      }
+    }
+    testID="header-home-text"
+  >
+    Edit
+  </Text>
+</View>
+`;

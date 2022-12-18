@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "justifyContent": "flex-end",
+      "paddingHorizontal": 10,
+    }
+  }
+  testID="radio-button-container"
+>
+  <Text
+    style={
+      {
+        "alignSelf": "center",
+        "color": "#fff",
+      }
+    }
+    testID="radio-button-text"
+  />
+</View>
+`;

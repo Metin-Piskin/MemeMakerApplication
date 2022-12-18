@@ -1,19 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-const Header = ({ home, backPress, detailPress }) => {
+import styles from './Header-style';
+
+const Header = ({ home, backPress }) => {
     return (
         home ? (
-            <View style={styles.homecontainer}>
-                <Text style={styles.hometext}>
+            <View style={styles.homecontainer} testID='header-home-container'>
+                <Text style={styles.hometext} testID='header-home-home-text'>
                     Meme Maker
                 </Text>
             </View>
         ) : (
-            <View style={styles.detailcontainer}>
+            <View style={styles.detailcontainer}  testID='header-home-detail-container'>
                 <TouchableOpacity
                     style={styles.backbutton}
+                    testID='header-home-back-button'
                     onPress={backPress}
                 >
                     <Ionicons
@@ -22,7 +25,9 @@ const Header = ({ home, backPress, detailPress }) => {
                         color='#fff'
                     />
                 </TouchableOpacity>
-                <Text style={styles.text}>Edit</Text>
+                <Text style={styles.text}  testID='header-home-text'>
+                    Edit
+                </Text>
             </View>
         )
 
@@ -30,53 +35,3 @@ const Header = ({ home, backPress, detailPress }) => {
 }
 
 export default Header;
-
-const styles = StyleSheet.create({
-    homecontainer: {
-        backgroundColor: '#161718',
-        //borderWidth: 1,
-        borderBottomWidth: 1,
-        borderColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginHorizontal: 5,
-        paddingVertical: 5
-    },
-    hometext: {
-        fontFamily: 'SpecialElite-Regular',
-        fontSize: 30,
-        color: '#fff'
-    },
-    homepluscontainer: {
-        // borderWidth: 1,
-        marginLeft: 45,
-        borderRadius: 5,
-        borderColor: '#fff'
-    },
-    homeplus: {
-        // padding: 5,
-        color: '#fff',
-        fontSize: 44,
-        paddingHorizontal: 10,
-    },
-    detailcontainer: {
-        backgroundColor: '#161718',
-        borderColor: '#fff',
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        marginHorizontal: 5,
-        paddingVertical: 5,
-    },
-    backbutton: {
-        alignSelf: 'center',
-    },
-    text: {
-        alignSelf: 'center',
-        fontSize: 30,
-        fontFamily: 'SpecialElite-Regular',
-        color: '#fff',
-        justifyContent: 'center',
-        left: Dimensions.get('screen').width / 2.95
-    },
-
-})

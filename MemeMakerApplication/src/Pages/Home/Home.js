@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import { FlashList } from "@shopify/flash-list";
 import LinearGradient from 'react-native-linear-gradient';
 

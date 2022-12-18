@@ -8,6 +8,7 @@ const SaveButton = ({ onPress, iconName }) => {
     return (
         <TouchableOpacity
             onPress={onPress}
+            testID='save-button-press'
             style={styles.save}
         >
             <MaterialIcons

@@ -88,7 +88,6 @@ const Detail = (props) => {
             else {
                 const data = res.assets[0]
                 setImageGallery(data)
-                console.log(data);
             }
         })
     }
@@ -166,15 +165,10 @@ const Detail = (props) => {
                 item === null ? (
                     <ViewShot
                         ref={ref}
-                        style={{
-                            width: item?.width,
-                            maxWidth: 391,
-                            height: item?.height,
-                            maxHeight: 391,
-                            resizeMode: 'contain',
-                            alignSelf: 'center',
-                            marginTop: 0,
-                        }}
+                        style={[
+                            styles.viewshot,
+                            { width: item?.width, height: item?.height }
+                        ]}
                         options={{
                             fileName: 'file-name',
                             format: 'jpg',
@@ -185,7 +179,7 @@ const Detail = (props) => {
                                 <TouchableOpacity onPress={openGallery}>
                                     <Image
                                         source={{ uri: plusimage }}
-                                        style={styles.image}
+                                        style={[styles.image, { tintColor: '#fff' }]}
                                     />
                                 </TouchableOpacity>
                             ) : (
@@ -195,6 +189,7 @@ const Detail = (props) => {
                                 />
                             )
                         }
+
                         <SaveButton
                             onPress={takeScreenShot}
                             iconName='save-alt'
@@ -215,19 +210,13 @@ const Detail = (props) => {
                                             return { x: 0, y: 100 }
                                         }}
                                     >
-                                        <Text style={{
-                                            color: colervalue,
-                                            padding: 5,
-                                            maxWidth: 160,
-                                            //lineHeight: 35,
-                                            flexWrap: 'wrap',
-                                            fontSize: sizevalue,
-                                            fontFamily: fontvalue
-                                        }}>
+                                        <Text style={[
+                                            styles.draggabletext,
+                                            { color: colervalue, fontSize: sizevalue, fontFamily: fontvalue }
+                                        ]}>
                                             {list}
                                         </Text>
                                     </Draggable>
-
                                 )
                             })
                         }
@@ -235,15 +224,10 @@ const Detail = (props) => {
                 ) : (
                     <ViewShot
                         ref={ref}
-                        style={{
-                            width: item?.width,
-                            maxWidth: 391,
-                            height: item?.height,
-                            maxHeight: 391,
-                            resizeMode: 'contain',
-                            alignSelf: 'center',
-                            marginTop: 0,
-                        }}
+                        style={[
+                            styles.viewshot,
+                            { width: item?.width, height: item?.height }
+                        ]}
                         options={{
                             fileName: 'file-name',
                             format: 'jpg',
@@ -251,15 +235,10 @@ const Detail = (props) => {
                         }} >
                         <Image
                             source={{ uri: item.url }}
-                            style={{
-                                width: item.width,
-                                maxWidth: 391,
-                                height: item.height,
-                                maxHeight: 391,
-                                resizeMode: 'contain',
-                                alignSelf: 'center',
-
-                            }}
+                            style={[
+                                styles.itemimage,
+                                { width: item.width, height: item.height }
+                            ]}
                         />
                         <SaveButton
                             onPress={takeScreenShot}
@@ -281,15 +260,10 @@ const Detail = (props) => {
                                             return { x: 0, y: 100 }
                                         }}
                                     >
-                                        <Text style={{
-                                            color: colervalue,
-                                            padding: 5,
-                                            maxWidth: 160,
-                                            //lineHeight: 35,
-                                            flexWrap: 'wrap',
-                                            fontSize: sizevalue,
-                                            fontFamily: fontvalue
-                                        }}>
+                                        <Text style={[
+                                            styles.draggabletext,
+                                            { color: colervalue, fontSize: sizevalue, fontFamily: fontvalue }
+                                        ]}>
                                             {list}
                                         </Text>
                                     </Draggable>
@@ -309,12 +283,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    viewshot: {
+        maxWidth: 391,
+        maxHeight: 391,
+        resizeMode: 'contain',
+        alignSelf: 'center',
+        marginTop: 0,
+    },
     image: {
-        // width: item.width,
         width: 391,
-        tintColor: '#fff',
-        //height: item.height,
         height: 391,
+        resizeMode: 'contain',
+        alignSelf: 'center',
+    },
+    itemimage: {
+        maxWidth: 391,
+        maxHeight: 391,
         resizeMode: 'contain',
         alignSelf: 'center',
     },
@@ -323,4 +307,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginHorizontal: 15
     },
+    draggabletext: {
+        padding: 5,
+        maxWidth: 160,
+        flexWrap: 'wrap',
+    }
 })
