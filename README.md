@@ -13,17 +13,17 @@ Bu uygulama sayesinde, günlük hayatta karşılaştığınız herhangi bir foto
 
 <details>
 <summary>Library</summary>
-
-- react-navigation
-- @react-navigation/native-stack
-- @react-native-camera-roll/camera-roll
-- @shopify/flash-list
-- axios
-- react-native-dropdown-picker
-- react-native-image-picker
-- react-native-linear-gradient
-- react-native-vector-icons
-- react-native-view-shot
+ 
+- <a href="https://reactnavigation.org/docs/getting-started/" target="_blank">  react-navigation </a>
+- <a href="https://reactnavigation.org/docs/hello-react-navigation" target="_blank">  @react-navigation/native-stack </a>
+- <a href="https://www.npmjs.com/package/@react-native-camera-roll/camera-roll" target="_blank"> @react-native-camera-roll/camera-roll </a>
+- <a href="https://www.npmjs.com/package/@shopify/flash-list" target="_blank"> @shopify/flash-list </a>
+- <a href="https://www.npmjs.com/package/axios" target="_blank"> axios </a>
+- <a href="https://www.npmjs.com/package/react-native-dropdown-picker" target="_blank"> react-native-dropdown-picker </a>
+- <a href="https://www.npmjs.com/package/react-native-image-picker" target="_blank"> react-native-image-picker </a>
+- <a href="https://www.npmjs.com/package/react-native-linear-gradient" target="_blank">  react-native-linear-gradient </a>
+- <a href="https://www.npmjs.com/package/react-native-vector-icons" target="_blank">  react-native-vector-icons </a>
+- <a href="https://www.npmjs.com/package/@wanmi/react-native-view-shot" target="_blank"> react-native-view-shot </a>
 
 </details>
 
